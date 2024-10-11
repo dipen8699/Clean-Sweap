@@ -1,16 +1,15 @@
+// Test File: CellTest.java
 package test.model;
-
+import static org.junit.Assert.*;
 import com.cleansweep.model.*;
-
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class CellTest {
-    Cell testCell = new Cell(new Position(0,0), SurfaceType.BARE_FLOOR);
-
+    
     @Test
     public void testCell(){
+        Cell testCell = new Cell(new Position(0,0), SurfaceType.BARE_FLOOR);
+
         assertEquals(new Position(0,0), testCell.getPosition());
         assertEquals(SurfaceType.BARE_FLOOR, testCell.getSurfaceType());
         assertEquals(0, testCell.getDirtUnits());
@@ -43,9 +42,9 @@ public class CellTest {
         testCell2.setHasStairs(true);
         testCell2.setHasChargingStation(false);
         
-        assertEquals(10, testCell.getDirtUnits());
-        assertEquals(true, testCell.isObstacle());
-        assertEquals(true, testCell.hasStairs());
-        assertEquals(false, testCell.hasChargingStation());
+        assertEquals(10, testCell2.getDirtUnits());
+        assertEquals(true, testCell2.isObstacle());
+        assertEquals(true, testCell2.hasStairs());
+        assertEquals(false, testCell2.hasChargingStation());
     }
 }
