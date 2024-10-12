@@ -7,8 +7,7 @@ public class Cell {
     private boolean isObstacle;
     private boolean hasStairs;
     private boolean hasChargingStation;
-
-    // Constructors, getters, setters
+    private ChargingStation stationPosition;
 
     public Cell(Position position, SurfaceType surfaceType) {
         this.position = position;
@@ -19,7 +18,15 @@ public class Cell {
         this.hasChargingStation = false;
     }
 
-    // Getters and Setters
+    public Cell(Position position, SurfaceType surfaceType, int dirtUnits, boolean isObstacle, boolean hasStairs, boolean hasChargingStation) {
+        this.position = position;
+        this.surfaceType = surfaceType;
+        this.dirtUnits = 0;
+        this.isObstacle = false;
+        this.hasStairs = false;
+        this.hasChargingStation = false;
+    }
+
 
     public Position getPosition() { return position; }
     public void setPosition(Position position) { this.position = position; }
@@ -37,5 +44,12 @@ public class Cell {
     public void setHasStairs(boolean hasStairs) { this.hasStairs = hasStairs; }
 
     public boolean hasChargingStation() { return hasChargingStation; }
+
+    public void decreaseDirtUnits(int amount) {
+        if (dirtUnits > 0) {
+            dirtUnits = Math.max(dirtUnits - amount, 0);
+        }
+    }
+
     public void setHasChargingStation(boolean hasChargingStation) { this.hasChargingStation = hasChargingStation; }
 }
