@@ -11,11 +11,11 @@ In this project, we are tasked with implementation of the Clean Sweep robotic va
 ### Control System
 #### Navigation
 The Clean sweep is able to navigate North, East, South, and West with the ability to detect obstacles and stairs.
-Furthur implementations: 
+<br/>Furthur implementations: 
 * Inclusion of walls in detection to allow optimized navigation
 #### Dirt Detection & Cleaning
 The clean sweep has a capacity of 50 units. Each vacuum usage removes 1 unit of dirt.
-Furthur Implementation: 
+<br/>Furthur Implementation: 
 * Return to charging station when full
 #### Power Management
 The clean sweep's power is depleted based on floor type:
@@ -27,7 +27,7 @@ The clean sweep is able to keep tabs on its power health, so when low health, it
 In furthur implementation. . .
 #### Activity Log
 Currently the console log with relay current position, current power, dirt capactity, and movement
-Furthur Implementation:
+<br/>Furthur Implementation:
 * Weekly logs
 * Totals
 * Current Status
@@ -47,10 +47,10 @@ All three surfaces are defined:
 3. High-pile carpet
 #### Navigation
 To help facilitate navigation, the floor plan's cells indicate if it is free or has an obstacle or stairs.
-Furthur implementation: 
+<br/>Furthur implementation: 
 * Inclusion of walls to provide a true simulation of a floor plan
 #### Charging Stations
 Cell(s) will contain a charging station. 
-Furthur Implemenation: 
+<br/> Furthur Implemenation: 
 * Detection of charging within 2 cells
 * Continuous tracking of nearest charging station
