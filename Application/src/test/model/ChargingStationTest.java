@@ -1,5 +1,5 @@
 //  Test for ChargingStation class
-package test.model;
+package model;
 import static org.junit.Assert.*;
 import com.cleansweep.model.*;
 import org.junit.Test;
