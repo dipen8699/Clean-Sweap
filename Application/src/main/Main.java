@@ -79,7 +79,6 @@ import com.cleansweep.control.Cleaning;
 import com.cleansweep.control.Diagnostics;
 import com.cleansweep.control.Navigation;
 import com.cleansweep.control.PowerManagement;
-import com.cleansweep.model.Cell;
 import com.cleansweep.model.FloorPlan;
 import com.cleansweep.model.FloorPlanLoader;
 import com.cleansweep.model.Position;
@@ -89,7 +88,8 @@ import com.cleansweep.utils.Logger;
 public class Main {
     public static void main(String[] args) {
         Logger logger = Logger.getInstance();
-        String filePath = Main.class.getClassLoader().getResource("floorplan.txt").getPath();
+        String filePath = "Application/src/floorplan.txt";
+        System.out.println(filePath);
         FloorPlan floorPlan = FloorPlanLoader.loadFromFile(filePath);
 
         Position startPosition = new Position(0, 0);
