@@ -27,4 +27,9 @@ public class Cleaning {
     public boolean isDirtCapacityFull() {
         return currentDirtCapacity >= DIRT_CAPACITY;
     }
+
+    public void emptyDirtContainer() {
+        this.currentDirtCapacity = 0;
+        logger.logInfo("Dirt container emptied. Current dirt capacity: " + currentDirtCapacity + "/" + DIRT_CAPACITY);
+    }
 }

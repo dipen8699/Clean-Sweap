@@ -43,4 +43,8 @@ public class PowerManagement {
                 return 1;
         }
     }
+
+    public Object getCurrentPower() {
+        return currentPower;
+    }
 }

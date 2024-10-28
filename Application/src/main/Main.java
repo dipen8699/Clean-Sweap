@@ -113,6 +113,12 @@ public class Main {
                 powerManagement.recharge();
             }
 
+            if (cleaning.isDirtCapacityFull())
+            {
+                logger.logInfo("Dirt capacity is full. Please Empty the Dirt Container!");
+                break;
+            }
+
             boolean moved = navigation.moveNext();
             if (!moved) {
                 logger.logInfo("All accessible positions have been covered.");
