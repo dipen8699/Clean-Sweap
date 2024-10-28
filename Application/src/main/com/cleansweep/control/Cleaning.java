@@ -8,6 +8,8 @@ public class Cleaning {
     private int currentDirtCapacity;
     private SensorSimulator sensorSimulator;
     private Logger logger;
+    private int totalDirtCollected = 0;
+    private int totalCleanTiles = 0;
 
     public Cleaning(SensorSimulator sensorSimulator) {
         this.sensorSimulator = sensorSimulator;
@@ -18,10 +20,23 @@ public class Cleaning {
     public void cleanCurrentPosition() {
         if (sensorSimulator.isDirtPresent()) {
             currentDirtCapacity++;
+            totalDirtCollected++;
             sensorSimulator.updateDirtLevel();
             logger.logInfo("Cleaned dirt at position " + sensorSimulator.getCurrentPosition() +
                     ". Current dirt capacity: " + currentDirtCapacity + "/" + DIRT_CAPACITY);
+            if(!sensorSimulator.isDirtPresent())
+            {
+                totalCleanTiles++;
+            }
         }
+    }
+
+    public Object getTotalCleanTiles(){
+        return totalCleanTiles;
+    }
+
+    public Object getTotalDirtCollected() {
+        return totalDirtCollected;
     }
 
     public boolean isDirtCapacityFull() {

@@ -122,6 +122,11 @@ public class Main {
             boolean moved = navigation.moveNext();
             if (!moved) {
                 logger.logInfo("All accessible positions have been covered.");
+                logger.logInfo("Totals" 
+                        + "\t\nPower Used: " + powerManagement.getTotalPowerUsed()
+                        + "\t\nTiles Cleaned: " + cleaning.getTotalCleanTiles()
+                        + "\t\nDirt Collected: " + cleaning.getTotalDirtCollected());
+                logger.logInfo("Returning to charging station...");
                 break;
             }
         }

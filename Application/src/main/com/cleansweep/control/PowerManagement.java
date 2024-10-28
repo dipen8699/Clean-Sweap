@@ -9,6 +9,7 @@ public class PowerManagement {
     private int currentPower;
     private SensorSimulator sensorSimulator;
     private Logger logger;
+    private int totalPowerUsed = 0;
 
     public PowerManagement(SensorSimulator sensorSimulator) {
         this.sensorSimulator = sensorSimulator;
@@ -19,6 +20,7 @@ public class PowerManagement {
     public void updatePowerUsage(SurfaceType surfaceType) {
         int powerUsage = getPowerUsage(surfaceType);
         currentPower -= powerUsage;
+        totalPowerUsed += powerUsage;
         logger.logInfo("Power usage: " + powerUsage + " units. Remaining power: " + currentPower + "/" + MAX_POWER);
     }
 
@@ -46,5 +48,9 @@ public class PowerManagement {
 
     public Object getCurrentPower() {
         return currentPower;
+    }
+
+    public Object getTotalPowerUsed() {
+        return totalPowerUsed;
     }
 }
