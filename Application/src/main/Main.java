@@ -109,11 +109,14 @@ public class Main {
         PowerManagement powerManagement = new PowerManagement(sensorSimulator);
         Diagnostics diagnostics = new Diagnostics(sensorSimulator);
 
-        floorPlan.displayFloorPlan();
+        floorPlan.displayFloorPlanWithCurrentPosition(startPosition);
+        floorPlan.setGridDimensions();
+        floorPlan.visualizeFloorPlan(startPosition);
         diagnostics.runDiagnostics();
 
         logger.logInfo("Starting navigation and cleaning...");
         while (true) {
+            Position currentPosition = sensorSimulator.getCurrentPosition();
             if (sensorSimulator.isDirtPresent()) {
                 cleaning.cleanCurrentPosition();
             }
@@ -122,6 +125,8 @@ public class Main {
                 navigation.returnToChargingStation();
                 powerManagement.recharge();
             }
+
+            floorPlan.visualizeFloorPlan(currentPosition);
 
             if (cleaning.isDirtCapacityFull())
             {
@@ -139,8 +144,11 @@ public class Main {
                 logger.logInfo("Returning to charging station...");
                 break;
             }
+            
         }
 
         logger.logInfo("Cleaning and navigation completed.");
+
+        floorPlan.visualizeFloorPlan(sensorSimulator.getCurrentPosition());
     }
 }
