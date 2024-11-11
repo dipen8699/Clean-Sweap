@@ -142,7 +142,6 @@ public class Main {
                         + "\t\nPower Used: " + powerManagement.getTotalPowerUsed()
                         + "\t\nTiles Cleaned: " + cleaning.getTotalCleanTiles()
                         + "\t\nDirt Collected: " + cleaning.getTotalDirtCollected());
-                logger.logInfo("Returning to charging station...");
                 break;
             }
 
