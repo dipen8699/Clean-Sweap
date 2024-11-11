@@ -137,6 +137,12 @@ public class Main {
             if (cleaning.isDirtCapacityFull())
             {
                 logger.logInfo("Dirt capacity is full. Please Empty the Dirt Container!");
+                logger.logInfo("All accessible positions have been covered.");
+                logger.logInfo("Totals" 
+                        + "\t\nPower Used: " + powerManagement.getTotalPowerUsed()
+                        + "\t\nTiles Cleaned: " + cleaning.getTotalCleanTiles()
+                        + "\t\nDirt Collected: " + cleaning.getTotalDirtCollected());
+                logger.logInfo("Returning to charging station...");
                 break;
             }
 
