@@ -81,14 +81,22 @@ public class FloorPlan {
         }
     }
 
+    public void getGridDimensions(){
+        System.out.println("Grid Dimensions: " + (maxX + 1) + " x " + (maxY + 1));
+    }
+
     public void visualizeFloorPlan(Position currentPosition) {
         System.out.println("Visualizing Floor Plan...");
-        System.out.println("Grid Dimensions: " + (maxX + 1) + " x " + (maxY + 1));
         System.out.println("Current Position: " + currentPosition); 
         for (int y = 0; y < maxY+1; y++){
             for (int x = 0; x < maxX+1; x++){
                 Position pos = new Position(x, y);
                 Cell cell = grid.get(pos);
+
+                if (x == 0){
+                    System.out.print("|");
+                }
+                
 
                 if (x == currentPosition.getX() && y == currentPosition.getY()){
                     System.out.print("CP");
@@ -103,7 +111,7 @@ public class FloorPlan {
                 } else {
                     System.out.print("  ");
                 }
-                if (cell.hasEastWall()) {
+                if (cell.hasEastWall() || x == maxX){ 
                     System.out.print("|");
                 } else {
                     System.out.print(" ");
@@ -111,16 +119,21 @@ public class FloorPlan {
             }
 
             System.out.println();
-            for (int i = 0; i < maxX; i++){
+            for (int i = 0; i < maxX+1; i++){
                 Position pos = new Position(i, y);
                 Cell cell = grid.get(pos);
-                if (cell.hasSouthWall()){
+                if (cell.hasSouthWall() || y == maxY){
                     System.out.print("---");
+                }
+                else {
+                    System.out.print("   ");
                 }
                 
             }
             System.out.println();
         }
+
+        System.out.println();
 
     }
 }

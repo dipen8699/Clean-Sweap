@@ -14,12 +14,14 @@ public class Navigation {
     private Logger logger;
     private Set<Position> visitedPositions;
     private Stack<Position> backtrackStack;
+    private Stack<Position> chargingStationPath;
 
     public Navigation(SensorSimulator sensorSimulator) {
         this.sensorSimulator = sensorSimulator;
         this.logger = Logger.getInstance();
         this.visitedPositions = new HashSet<>();
         this.backtrackStack = new Stack<>();
+        this.chargingStationPath = new Stack<>();
         visitedPositions.add(sensorSimulator.getCurrentPosition());
     }
 
@@ -34,6 +36,7 @@ public class Navigation {
                 sensorSimulator.updatePosition(newPosition);
                 visitedPositions.add(newPosition);
                 backtrackStack.push(currentPosition);
+                chargingStationPath.push(currentPosition);
                 logger.logInfo("Available directions: " + openDirections);
                 logger.logInfo("Moved [" + direction + "] to position " + newPosition);
                 return true;
@@ -52,13 +55,22 @@ public class Navigation {
     }
 
     public void returnToChargingStation() {
+        Position lastPosition = sensorSimulator.getCurrentPosition();
         logger.logInfo("Navigating to the charging station...");
         while (!sensorSimulator.isChargingStationNearby()) {
+            if(!chargingStationPath.isEmpty()) {
+                Position previousPosition = chargingStationPath.pop();
+                sensorSimulator.updatePosition(previousPosition);
+                logger.logInfo("Moved to position " + previousPosition);
+            } else
             if (!moveNext()) {
                 logger.logWarning("Unable to reach the charging station.");
                 break;
             }
         }
+        logger.logInfo("Reached the charging station.");
+        logger.logInfo("Returning to the last position...");
+        sensorSimulator.updatePosition(lastPosition);
     }
 
     private Position calculateNewPosition(String direction) {

@@ -34,6 +34,10 @@ public class SensorSimulator {
         return dirtSensor.isDirtPresent(currentPosition, floorPlan);
     }
 
+    public boolean isDirtPresent(Position position) {
+        return dirtSensor.isDirtPresent(position, floorPlan);
+    }
+
     public void updateDirtLevel() {
         if (isDirtPresent()) {
             floorPlan.getCell(currentPosition).decreaseDirtUnits(1);
@@ -82,4 +86,5 @@ public class SensorSimulator {
     private boolean isAccessible(Position position) {
         return floorPlan.isAccessible(position);
     }
+
 }

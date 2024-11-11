@@ -75,12 +75,14 @@
 //        }
 //    }
 //}
+import java.util.Map;
 import java.util.Scanner;
 
 import com.cleansweep.control.Cleaning;
 import com.cleansweep.control.Diagnostics;
 import com.cleansweep.control.Navigation;
 import com.cleansweep.control.PowerManagement;
+import com.cleansweep.model.Cell;
 import com.cleansweep.model.FloorPlan;
 import com.cleansweep.model.FloorPlanLoader;
 import com.cleansweep.model.Position;
@@ -88,7 +90,7 @@ import com.cleansweep.sensor.SensorSimulator;
 import com.cleansweep.utils.Logger;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Logger logger = Logger.getInstance();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the file path for the floor plan: ");
@@ -98,10 +100,11 @@ public class Main {
         System.out.println(filePath);
         FloorPlan floorPlan = FloorPlanLoader.loadFromFile(filePath);
 
-        System.out.println("Enter the starting position (x, y): ");
-        int x = scanner.nextInt();
-        int y = scanner.nextInt();
-        Position startPosition = new Position(x, y);
+        // System.out.println("Enter the starting position (x, y): ");
+        // int x = scanner.nextInt();
+        // int y = scanner.nextInt();
+        Map<Position, Cell> chargingStations = floorPlan.getChargingStations();
+        Position startPosition = chargingStations.keySet().iterator().next();
         
         SensorSimulator sensorSimulator = new SensorSimulator(floorPlan, startPosition);
         Navigation navigation = new Navigation(sensorSimulator);
@@ -110,8 +113,11 @@ public class Main {
         Diagnostics diagnostics = new Diagnostics(sensorSimulator);
 
         floorPlan.displayFloorPlanWithCurrentPosition(startPosition);
+        Thread.sleep(2000);
         floorPlan.setGridDimensions();
+        floorPlan.getGridDimensions();
         floorPlan.visualizeFloorPlan(startPosition);
+        Thread.sleep(2000);
         diagnostics.runDiagnostics();
 
         logger.logInfo("Starting navigation and cleaning...");
@@ -134,6 +140,7 @@ public class Main {
                 break;
             }
 
+            Thread.sleep(1250);
             boolean moved = navigation.moveNext();
             if (!moved) {
                 logger.logInfo("All accessible positions have been covered.");
