@@ -34,7 +34,8 @@ public class Navigation {
                 sensorSimulator.updatePosition(newPosition);
                 visitedPositions.add(newPosition);
                 backtrackStack.push(currentPosition);
-                logger.logInfo("Moved " + direction + " to position " + newPosition);
+                logger.logInfo("Available directions: " + openDirections);
+                logger.logInfo("Moved [" + direction + "] to position " + newPosition);
                 return true;
             }
         }

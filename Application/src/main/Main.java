@@ -75,6 +75,8 @@
 //        }
 //    }
 //}
+import java.util.Scanner;
+
 import com.cleansweep.control.Cleaning;
 import com.cleansweep.control.Diagnostics;
 import com.cleansweep.control.Navigation;
@@ -88,11 +90,19 @@ import com.cleansweep.utils.Logger;
 public class Main {
     public static void main(String[] args) {
         Logger logger = Logger.getInstance();
-        String filePath = "Application/src/floorplan.txt";
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the file path for the floor plan: ");
+
+        String floorPlanFile = scanner.nextLine();
+        String filePath = floorPlanFile;//"Application/src/floorplan.txt";
         System.out.println(filePath);
         FloorPlan floorPlan = FloorPlanLoader.loadFromFile(filePath);
 
-        Position startPosition = new Position(0, 0);
+        System.out.println("Enter the starting position (x, y): ");
+        int x = scanner.nextInt();
+        int y = scanner.nextInt();
+        Position startPosition = new Position(x, y);
+        
         SensorSimulator sensorSimulator = new SensorSimulator(floorPlan, startPosition);
         Navigation navigation = new Navigation(sensorSimulator);
         Cleaning cleaning = new Cleaning(sensorSimulator);

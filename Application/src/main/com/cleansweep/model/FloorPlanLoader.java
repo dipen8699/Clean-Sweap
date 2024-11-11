@@ -15,7 +15,11 @@ public class FloorPlanLoader {
                 boolean isObstacle = Boolean.parseBoolean(tokens[3].trim());
                 boolean hasStairs = Boolean.parseBoolean(tokens[4].trim());
                 boolean hasChargingStation = Boolean.parseBoolean(tokens[5].trim());
-                int dirtUnits = Integer.parseInt(tokens[6].trim());
+                boolean hasNorthWall = Boolean.parseBoolean(tokens[6].trim());
+                boolean hasSouthWall = Boolean.parseBoolean(tokens[7].trim());
+                boolean hasEastWall = Boolean.parseBoolean(tokens[8].trim());
+                boolean hasWestWall = Boolean.parseBoolean(tokens[9].trim());
+                int dirtUnits = Integer.parseInt(tokens[10].trim());
 
                 Position pos = new Position(x, y);
                 Cell cell = new Cell(pos, surface);
@@ -23,6 +27,10 @@ public class FloorPlanLoader {
                 cell.setHasStairs(hasStairs);
                 cell.setHasChargingStation(hasChargingStation);
                 cell.setDirtUnits(dirtUnits);
+                cell.setHasNorthWall(hasNorthWall);
+                cell.setHasSouthWall(hasSouthWall);
+                cell.setHasEastWall(hasEastWall);
+                cell.setHasWestWall(hasWestWall);
 
                 floorPlan.addCell(cell);
             }

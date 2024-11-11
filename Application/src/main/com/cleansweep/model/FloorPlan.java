@@ -44,7 +44,9 @@ public class FloorPlan {
             System.out.println("Position: (" + pos.getX() + ", " + pos.getY() + "), Surface: "
                     + cell.getSurfaceType() + ", Dirt: " + cell.getDirtUnits()
                     + ", Obstacle: " + cell.isObstacle() + ", Stairs: " + cell.hasStairs()
-                    + ", Charging Station: " + cell.hasChargingStation());
+                    + ", Charging Station: " + cell.hasChargingStation()
+                    + ", North Wall: " + cell.hasNorthWall() + ", South Wall: " + cell.hasSouthWall()
+                    + ", East Wall: " + cell.hasEastWall() + ", West Wall: " + cell.hasWestWall());
         }
         System.out.println("Grid Size : " + grid.size());
     }
