@@ -8,6 +8,10 @@ public class Cell {
     private boolean hasStairs;
     private boolean hasChargingStation;
     private ChargingStation stationPosition;
+    private boolean hasNorthWall;
+    private boolean hasSouthWall;
+    private boolean hasEastWall;
+    private boolean hasWestWall;
 
     public Cell(Position position, SurfaceType surfaceType) {
         this.position = position;
@@ -16,15 +20,23 @@ public class Cell {
         this.isObstacle = false;
         this.hasStairs = false;
         this.hasChargingStation = false;
+        this.hasNorthWall = false;
+        this.hasSouthWall = false;
+        this.hasEastWall = false;
+        this.hasWestWall = false;
     }
 
-    public Cell(Position position, SurfaceType surfaceType, int dirtUnits, boolean isObstacle, boolean hasStairs, boolean hasChargingStation) {
+    public Cell(Position position, SurfaceType surfaceType, int dirtUnits, boolean isObstacle, boolean hasStairs, boolean hasChargingStation, boolean hasNorthWall, boolean hasSouthWall, boolean hasEastWall, boolean hasWestWall) {
         this.position = position;
         this.surfaceType = surfaceType;
         this.dirtUnits = 0;
-        this.isObstacle = false;
-        this.hasStairs = false;
-        this.hasChargingStation = false;
+        this.isObstacle = isObstacle;
+        this.hasStairs = hasStairs;
+        this.hasChargingStation = hasChargingStation;
+        this.hasNorthWall = hasNorthWall;
+        this.hasSouthWall = hasSouthWall;
+        this.hasEastWall = hasEastWall;
+        this.hasWestWall = hasWestWall;
     }
 
 
@@ -52,4 +64,18 @@ public class Cell {
     }
 
     public void setHasChargingStation(boolean hasChargingStation) { this.hasChargingStation = hasChargingStation; }
+
+    public boolean hasNorthWall() { return hasNorthWall;}
+    public void setHasNorthWall(boolean hasNorthWall) { this.hasNorthWall = hasNorthWall; }
+
+    public boolean hasSouthWall() { return hasSouthWall;}
+    public void setHasSouthWall(boolean hasSouthWall) { this.hasSouthWall = hasSouthWall; }
+
+    public boolean hasEastWall() { return hasEastWall;}
+    public void setHasEastWall(boolean hasEastWall) { this.hasEastWall = hasEastWall; }
+
+    public boolean hasWestWall() { return hasWestWall;}
+    public void setHasWestWall(boolean hasWestWall) { this.hasWestWall = hasWestWall; } 
+
+    
 }

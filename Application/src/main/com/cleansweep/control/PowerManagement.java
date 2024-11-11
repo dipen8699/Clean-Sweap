@@ -25,7 +25,7 @@ public class PowerManagement {
     }
 
     public boolean isLowPower() {
-        return currentPower < 20;
+        return currentPower < (MAX_POWER * .20);
     }
 
     public void recharge() {

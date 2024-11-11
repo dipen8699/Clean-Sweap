@@ -59,7 +59,7 @@ public class FullCapacityTest {
         for(int x = 0; x < 8; x++){
             for(int y = 0; y < 8; y++){
                 SurfaceType surfaceType = (x + y) % 3 == 0 ? SurfaceType.HIGH_PILE_CARPET : (x + y) % 3 == 1 ? SurfaceType.LOW_PILE_CARPET : SurfaceType.BARE_FLOOR;
-                Cell cell = new Cell(new Position(x, y), surfaceType, (x + y) % 2 == 0 ? 1 : 0, false, false, false);
+                Cell cell = new Cell(new Position(x, y), surfaceType, (x + y) % 2 == 0 ? 1 : 0, false, false, false, false, false, false, false);
                 if((x==0 && y== 0 )){
                     cell.setHasChargingStation(true);
                 }

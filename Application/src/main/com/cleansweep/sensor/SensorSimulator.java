@@ -34,6 +34,10 @@ public class SensorSimulator {
         return dirtSensor.isDirtPresent(currentPosition, floorPlan);
     }
 
+    public boolean isDirtPresent(Position position) {
+        return dirtSensor.isDirtPresent(position, floorPlan);
+    }
+
     public void updateDirtLevel() {
         if (isDirtPresent()) {
             floorPlan.getCell(currentPosition).decreaseDirtUnits(1);
@@ -59,22 +63,22 @@ public class SensorSimulator {
         List<String> openDirections = new ArrayList<>();
 
         Position north = new Position(currentPosition.getX(), currentPosition.getY() - 1);
-        if (isAccessible(north)) {
+        if (isAccessible(north) && !floorPlan.getCell(currentPosition).hasNorthWall()) {
             openDirections.add("North");
         }
 
         Position south = new Position(currentPosition.getX(), currentPosition.getY() + 1);
-        if (isAccessible(south)) {
+        if (isAccessible(south) && !floorPlan.getCell(currentPosition).hasSouthWall()) {
             openDirections.add("South");
         }
 
         Position east = new Position(currentPosition.getX() + 1, currentPosition.getY());
-        if (isAccessible(east)) {
+        if (isAccessible(east) && !floorPlan.getCell(currentPosition).hasEastWall()) {
             openDirections.add("East");
         }
 
         Position west = new Position(currentPosition.getX() - 1, currentPosition.getY());
-        if (isAccessible(west)) {
+        if (isAccessible(west) && !floorPlan.getCell(currentPosition).hasWestWall()) {
             openDirections.add("West");
         }
         return openDirections;
@@ -82,4 +86,5 @@ public class SensorSimulator {
     private boolean isAccessible(Position position) {
         return floorPlan.isAccessible(position);
     }
+
 }

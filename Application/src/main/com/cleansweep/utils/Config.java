@@ -54,7 +54,7 @@ public class Config {
         for (int x = 0; x < 5; x++) {
             for (int y = 0; y < 5; y++) {
                 SurfaceType surfaceType = (x + y) % 3 == 0 ? SurfaceType.HIGH_PILE_CARPET : (x + y) % 3 == 1 ? SurfaceType.LOW_PILE_CARPET : SurfaceType.BARE_FLOOR;
-                Cell cell = new Cell(new Position(x, y), surfaceType, (x + y) % 2 == 0 ? 1 : 0, false, false, false);
+                Cell cell = new Cell(new Position(x, y), surfaceType, (x + y) % 2 == 0 ? 1 : 0, false, false, false, false, false, false, false);
 
                 if ((x == 2 && y == 2) || (x == 1 && y == 3)) {
                     cell.setObstacle(true);
